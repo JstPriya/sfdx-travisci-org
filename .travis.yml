@@ -14,7 +14,7 @@ before_install:
 - export PATH=./sfdx/$(pwd):$PATH
 before_script:
 - export DEPLOYDIR=src
-- export TESTLEVEL=RunLocalTests
+- export TESTLEVEL=NoTestRun
 - sfdx --version
 - sfdx plugins --core
 script:
