@@ -1,6 +1,7 @@
 sudo: true
 before_install:
-
+- openssl aes-256-cbc -K $encrypted_79a2f6093848_key -iv $encrypted_79a2f6093848_iv
+  -in assets/server.key.enc -out assets/server.key -d
 - export CLIURL=https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz
 - export SFDX_AUTOUPDATE_DISABLE=false
 - export SFDX_USE_GENERIC_UNIX_KEYCHAIN=true
@@ -19,5 +20,5 @@ before_script:
 script:
 - sfdx force:auth:jwt:grant --instanceurl https://login.salesforce.com  --clientid
   $CONSUMERKEY --jwtkeyfile assets/server.key --username $USERNAME --setalias DevHubOrg
-- sfdx force:mdapi:deploy --wait 10 --deploydir $DEPLOYDIR --targetusername DevHubOrg --testlevel
-  $TESTLEVEL
+- sfdx force:mdapi:deploy --wait 10 --deploydir $DEPLOYDIR --targetusername DevHubOrg
+  --testlevel $TESTLEVEL
